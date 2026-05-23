@@ -17,228 +17,170 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 3rem 1.5rem;
+    padding: 2.5rem 1.5rem;
     font-family: 'EB Garamond', Georgia, serif;
     color: #d4b896;
   }
 
   .header {
     text-align: center;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
   }
 
   .header-ornament {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    justify-content: center;
-    margin-bottom: 0.8rem;
-    color: #8a6840;
+    display: flex; align-items: center; gap: 1.2rem;
+    justify-content: center; margin-bottom: 0.8rem; color: #8a6840;
   }
-
-  .header-ornament::before,
-  .header-ornament::after {
-    content: '';
-    flex: 1;
-    max-width: 120px;
-    height: 1px;
-    background: linear-gradient(to right, transparent, #8a6840);
-  }
-
-  .header-ornament::after {
-    background: linear-gradient(to left, transparent, #8a6840);
+  .header-ornament::before { background: linear-gradient(to right, transparent, #8a6840); }
+  .header-ornament::after  { background: linear-gradient(to left,  transparent, #8a6840); }
+  .header-ornament::before, .header-ornament::after {
+    content: ''; flex: 1; max-width: 120px; height: 1px;
   }
 
   .header h1 {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: 2.4rem;
-    font-weight: 400;
-    color: #e8d5b7;
-    letter-spacing: 0.05em;
-    line-height: 1.2;
+    font-size: 2.2rem; font-weight: 400; color: #e8d5b7;
+    letter-spacing: 0.05em; line-height: 1.2;
   }
-
   .header .subtitle {
-    font-size: 1rem;
-    color: #8a6840;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-top: 0.4rem;
-    font-style: italic;
+    font-size: 1rem; color: #8a6840; letter-spacing: 0.15em;
+    text-transform: uppercase; margin-top: 0.4rem; font-style: italic;
   }
 
+  .appeal {
+    margin-bottom: 1.5rem;
+    padding: 10px 24px;
+    border: 1px solid #5a3e20;
+    background: rgba(138,104,64,0.08);
+    color: #c8a870;
+    font-size: 0.92rem;
+    text-align: center;
+    max-width: 700px;
+    line-height: 1.6;
+  }
+  .appeal strong { color: #e8d5b7; }
+  .appeal a { color: #c89840; text-decoration: none; border-bottom: 1px solid rgba(200,152,64,0.4); }
+  .appeal a:hover { color: #f0c060; }
+
+  /* ── main two-column layout ── */
+  .main-layout {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1280px;
+  }
+
+  /* ── photo side ── */
   .photo-frame {
+    flex: 1 1 auto;
     position: relative;
     display: inline-block;
-    padding: 14px;
+    padding: 12px;
     background: #2a1f14;
     border: 1px solid #4a3520;
-    box-shadow:
-      0 0 0 1px #1a1008,
-      0 4px 40px rgba(0,0,0,0.8),
-      inset 0 0 30px rgba(0,0,0,0.4);
+    box-shadow: 0 0 0 1px #1a1008, 0 4px 40px rgba(0,0,0,0.8), inset 0 0 30px rgba(0,0,0,0.4);
   }
-
   .photo-frame::before {
-    content: '';
-    position: absolute;
-    inset: 5px;
-    border: 1px solid rgba(138,104,64,0.2);
-    pointer-events: none;
-    z-index: 1;
+    content: ''; position: absolute; inset: 5px;
+    border: 1px solid rgba(138,104,64,0.2); pointer-events: none; z-index: 1;
   }
-
-  .photo-wrapper {
-    position: relative;
-    display: block;
-    line-height: 0;
-  }
-
+  .photo-wrapper { position: relative; display: block; line-height: 0; }
   .photo-wrapper img {
-    display: block;
-    width: 100%;
-    max-width: 900px;
-    height: auto;
+    display: block; width: 100%; height: auto;
     filter: sepia(15%) contrast(1.05);
   }
-
-  .areas-layer {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
+  .areas-layer { position: absolute; inset: 0; pointer-events: none; }
   .person-area {
-    position: absolute;
-    cursor: pointer;
-    pointer-events: all;
-    border-radius: 3px;
-    transition: background 0.15s ease;
+    position: absolute; cursor: pointer; pointer-events: all;
+    border-radius: 3px; transition: background 0.15s ease;
   }
-
   .person-area:hover {
-    background: rgba(212, 184, 150, 0.18);
-    outline: 1.5px solid rgba(212, 184, 150, 0.5);
+    background: rgba(212,184,150,0.18);
+    outline: 1.5px solid rgba(212,184,150,0.5);
   }
-
   .person-area.active {
-    background: rgba(212, 184, 100, 0.28);
-    outline: 2px solid rgba(220, 180, 80, 0.85);
+    background: rgba(212,184,100,0.28);
+    outline: 2px solid rgba(220,180,80,0.85);
     animation: pulse 1.8s ease-in-out 2;
   }
-
   @keyframes pulse {
     0%   { background: rgba(212,184,100,0.28); outline-color: rgba(220,180,80,0.85); }
     50%  { background: rgba(212,184,100,0.48); outline-color: rgba(255,220,80,1); }
     100% { background: rgba(212,184,100,0.28); outline-color: rgba(220,180,80,0.85); }
   }
 
-  .tooltip {
-    position: fixed;
-    background: #1a1410;
-    border: 1px solid #8a6840;
-    color: #e8d5b7;
-    padding: 7px 14px 8px;
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 0.95rem;
-    white-space: nowrap;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0;
-    transform: translateY(4px);
-    transition: opacity 0.15s ease, transform 0.15s ease;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-  }
-
-  .tooltip.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
+  /* ── name list side ── */
   .name-list {
-    margin-top: 2.5rem;
-    width: 100%;
-    max-width: 928px;
+    flex: 0 0 220px;
+    position: sticky;
+    top: 1.5rem;
+    max-height: calc(100vh - 3rem);
+    display: flex;
+    flex-direction: column;
   }
 
   .name-list h2 {
     font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 400;
-    font-size: 1.1rem;
-    color: #8a6840;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 1.2rem;
-    padding-bottom: 0.8rem;
-    border-bottom: 1px solid #3a2a18;
+    font-weight: 400; font-size: 0.95rem; color: #8a6840;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    text-align: center; margin-bottom: 0.6rem;
+    padding-bottom: 0.6rem; border-bottom: 1px solid #3a2a18;
+    flex-shrink: 0;
   }
+
+  .names-scroll {
+    overflow-y: auto;
+    flex: 1;
+    /* custom scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: #4a3520 #1a1410;
+  }
+  .names-scroll::-webkit-scrollbar { width: 5px; }
+  .names-scroll::-webkit-scrollbar-track { background: #1a1410; }
+  .names-scroll::-webkit-scrollbar-thumb { background: #4a3520; border-radius: 3px; }
 
   .names-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 0;
+    display: flex;
+    flex-direction: column;
     border: 1px solid #3a2a18;
-    border-right: none;
     border-bottom: none;
   }
-
   .name-item {
-    padding: 7px 14px;
-    font-size: 0.88rem;
+    padding: 6px 12px;
+    font-size: 0.83rem;
     color: #b89870;
-    border-right: 1px solid #3a2a18;
     border-bottom: 1px solid #3a2a18;
-    cursor: default;
     transition: background 0.12s ease, color 0.12s ease;
-  }
-
-  .name-item:hover {
-    background: rgba(138,104,64,0.12);
-    color: #e8d5b7;
     cursor: pointer;
+    line-height: 1.4;
   }
-
+  .name-item:hover { background: rgba(138,104,64,0.15); color: #e8d5b7; }
   .name-item.selected {
-    background: rgba(138,104,64,0.22);
-    color: #f0ddb0;
+    background: rgba(138,104,64,0.25); color: #f0ddb0;
     border-left: 2px solid #c89840;
   }
+  .name-item .num { color: #5a4030; font-size: 0.72rem; margin-right: 5px; }
 
-  .name-item .num {
-    color: #5a4030;
-    font-size: 0.75rem;
-    margin-right: 6px;
+  /* tooltip */
+  .tooltip {
+    position: fixed; background: #1a1410; border: 1px solid #8a6840;
+    color: #e8d5b7; padding: 7px 14px 8px;
+    font-family: 'Playfair Display', Georgia, serif; font-size: 0.95rem;
+    white-space: nowrap; pointer-events: none; z-index: 9999;
+    opacity: 0; transform: translateY(4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
   }
+  .tooltip.visible { opacity: 1; transform: translateY(0); }
 
-  .appeal {
-    margin-bottom: 2rem;
-    padding: 12px 24px;
-    border: 1px solid #5a3e20;
-    background: rgba(138,104,64,0.08);
-    color: #c8a870;
-    font-size: 0.95rem;
-    text-align: center;
-    max-width: 600px;
-    line-height: 1.6;
-  }
-
-  .appeal strong { color: #e8d5b7; }
-
-  .appeal a {
-    color: #c89840;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(200,152,64,0.4);
-  }
-
-  .appeal a:hover { color: #f0c060; border-bottom-color: #f0c060; }
-
-  .footer-note {
-    margin-top: 2rem;
-    font-size: 0.8rem;
-    color: #4a3520;
-    letter-spacing: 0.05em;
-    font-style: italic;
+  /* mobile fallback */
+  @media (max-width: 700px) {
+    .main-layout { flex-direction: column; }
+    .name-list { flex: none; position: static; max-height: 300px; width: 100%; }
+    .names-grid { flex-direction: row; flex-wrap: wrap; }
+    .name-item { flex: 0 0 48%; }
   }
 </style>
 </head>
@@ -255,17 +197,22 @@
   <a href="mailto:macele.bojan@gmail.com">macele.bojan@gmail.com</a>
 </div>
 
-<div class="photo-frame">
-  <div class="photo-wrapper" id="photoWrapper">
-    <img src="razred.jpeg" alt="Razredna fotografija" id="photo" draggable="false">
+<div class="main-layout">
 
-    <div class="areas-layer" id="areasLayer"></div>
+  <div class="photo-frame">
+    <div class="photo-wrapper" id="photoWrapper">
+      <img src="razred.jpeg" alt="Razredna fotografija" id="photo" draggable="false">
+      <div class="areas-layer" id="areasLayer"></div>
+    </div>
   </div>
-</div>
 
-<div class="name-list">
-  <h2>Učenci</h2>
-  <div class="names-grid" id="namesGrid"></div>
+  <div class="name-list">
+    <h2>Učenci</h2>
+    <div class="names-scroll">
+      <div class="names-grid" id="namesGrid"></div>
+    </div>
+  </div>
+
 </div>
 
 <div class="tooltip" id="tooltip"></div>
@@ -325,9 +272,9 @@ const people = [
   { name: "Oseba 5",                      x1: 186, y1: 133, x2: 238, y2: 187 },
 ];
 
-const photo = document.getElementById('photo');
-const layer = document.getElementById('areasLayer');
-const tooltip = document.getElementById('tooltip');
+const photo    = document.getElementById('photo');
+const layer    = document.getElementById('areasLayer');
+const tooltip  = document.getElementById('tooltip');
 const namesGrid = document.getElementById('namesGrid');
 
 let activeArea = null;
@@ -341,19 +288,22 @@ function highlightPerson(name) {
   }
   if (activeNameItem) activeNameItem.classList.remove('selected');
 
-  const area = layer.querySelector(`[data-name="${name}"]`);
+  const area = layer.querySelector(`[data-name="${CSS.escape(name)}"]`);
   if (area) {
     area.classList.remove('active');
     void area.offsetWidth;
     area.classList.add('active');
     activeArea = area;
-    area.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // scroll photo into view only on mobile (list is sticky on desktop)
+    if (window.innerWidth <= 700)
+      area.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  const nameEl = namesGrid.querySelector(`[data-name="${name}"]`);
+  const nameEl = namesGrid.querySelector(`[data-name="${CSS.escape(name)}"]`);
   if (nameEl) {
     nameEl.classList.add('selected');
     activeNameItem = nameEl;
+    nameEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 }
 
@@ -376,34 +326,29 @@ function buildAreas() {
   people.forEach(p => {
     const el = document.createElement('div');
     el.className = 'person-area';
+    el.dataset.name = p.name;
     el.style.left   = (p.x1 * scaleX) + 'px';
     el.style.top    = (p.y1 * scaleY) + 'px';
     el.style.width  = ((p.x2 - p.x1) * scaleX) + 'px';
     el.style.height = ((p.y2 - p.y1) * scaleY) + 'px';
 
-    el.dataset.name = p.name;
-
     el.addEventListener('click', () => highlightPerson(p.name));
-    el.addEventListener('mouseenter', (e) => {
+    el.addEventListener('mouseenter', e => {
       tooltip.textContent = p.name;
       tooltip.classList.add('visible');
       moveTooltip(e);
     });
     el.addEventListener('mousemove', moveTooltip);
-    el.addEventListener('mouseleave', () => {
-      tooltip.classList.remove('visible');
-    });
+    el.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
     layer.appendChild(el);
   });
 }
 
 function moveTooltip(e) {
   const offset = 14;
-  let x = e.clientX + offset;
-  let y = e.clientY - 36;
-  const tw = tooltip.offsetWidth || 160;
-  const th = tooltip.offsetHeight || 36;
-  if (x + tw > window.innerWidth - 8) x = e.clientX - tw - offset;
+  let x = e.clientX + offset, y = e.clientY - 36;
+  const tw = tooltip.offsetWidth || 160, th = tooltip.offsetHeight || 36;
+  if (x + tw > window.innerWidth - 8)  x = e.clientX - tw - offset;
   if (y < 8) y = e.clientY + offset;
   if (y + th > window.innerHeight - 8) y = window.innerHeight - th - 8;
   tooltip.style.left = x + 'px';
@@ -414,15 +359,8 @@ photo.addEventListener('load', buildAreas);
 if (photo.complete) buildAreas();
 
 let resizeTimer;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(buildAreas, 60);
-});
-
-new ResizeObserver(() => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(buildAreas, 60);
-}).observe(photo);
+window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(buildAreas, 60); });
+new ResizeObserver(() => { clearTimeout(resizeTimer); resizeTimer = setTimeout(buildAreas, 60); }).observe(photo);
 </script>
 </body>
 </html>
