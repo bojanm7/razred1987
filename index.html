@@ -162,6 +162,18 @@
     background: rgba(138,104,64,0.25); color: #f0ddb0;
     border-left: 2px solid #c89840;
   }
+  .name-separator {
+    grid-column: 1 / -1;
+    padding: 5px 12px;
+    font-size: 0.75rem;
+    color: #8a6840;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 1px solid #3a2a18;
+    border-right: 1px solid #3a2a18;
+    background: rgba(138,104,64,0.06);
+  }
+
   .name-item .num { color: #5a4030; font-size: 0.72rem; margin-right: 5px; }
 
   /* tooltip */
@@ -194,7 +206,7 @@
 </div>
 
 <div class="appeal">
-  Prepoznaš <strong>sošolca 1, 2, 3, 4 ali 5</strong>? Sporoči ime na
+  Prepoznaš <strong>Osebo 1, 2, 3, 4 ali 5</strong>? Sporoči ime na
   <a href="mailto:macele.bojan@gmail.com">macele.bojan@gmail.com</a>
 </div>
 
@@ -208,7 +220,7 @@
   </div>
 
   <div class="name-list">
-    <h2>Sošolci</h2>
+    <h2>Učenci</h2>
     <div class="names-scroll">
       <div class="names-grid" id="namesGrid"></div>
     </div>
@@ -266,11 +278,11 @@ const people = [
   { name: "Anita Simonič",                x1: 331, y1: 128, x2: 385, y2: 200 },
   { name: "Vili Pečavar",                 x1: 30,  y1: 105, x2: 87,  y2: 175 },
   { name: "Peter Pečavar",                x1: 675, y1: 17,  x2: 733, y2: 81  },
-  { name: "Sošolec 1",                      x1: 123, y1: 102, x2: 185, y2: 172 },
-  { name: "Sošolec 2",                      x1: 248, y1: 109, x2: 305, y2: 171 },
-  { name: "Sošolec 3",                      x1: 424, y1: 126, x2: 471, y2: 174 },
-  { name: "Sošolec 4",                      x1: 577, y1: 23,  x2: 634, y2: 93  },
-  { name: "Sošolec 5",                      x1: 186, y1: 133, x2: 238, y2: 187 },
+  { name: "Oseba 1",                      x1: 123, y1: 102, x2: 185, y2: 172 },
+  { name: "Oseba 2",                      x1: 248, y1: 109, x2: 305, y2: 171 },
+  { name: "Oseba 3",                      x1: 424, y1: 126, x2: 471, y2: 174 },
+  { name: "Oseba 4",                      x1: 577, y1: 23,  x2: 634, y2: 93  },
+  { name: "Oseba 5",                      x1: 186, y1: 133, x2: 238, y2: 187 },
 ];
 
 const photo    = document.getElementById('photo');
@@ -308,8 +320,23 @@ function highlightPerson(name) {
   }
 }
 
-const sorted = [...people].sort((a,b) => a.name.localeCompare(b.name, 'sl'));
+const sorted = [...people].sort((a,b) => {
+  const aUnknown = a.name.startsWith('Sošolec');
+  const bUnknown = b.name.startsWith('Sošolec');
+  if (aUnknown && !bUnknown) return 1;
+  if (!aUnknown && bUnknown) return -1;
+  return a.name.localeCompare(b.name, 'sl');
+});
+
+let separatorAdded = false;
 sorted.forEach((p, i) => {
+  if (p.name.startsWith('Sošolec') && !separatorAdded) {
+    separatorAdded = true;
+    const sep = document.createElement('div');
+    sep.className = 'name-separator';
+    sep.textContent = '? Neznani sošolci';
+    namesGrid.appendChild(sep);
+  }
   const div = document.createElement('div');
   div.className = 'name-item';
   div.dataset.name = p.name;
