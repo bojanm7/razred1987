@@ -113,7 +113,7 @@
 
   /* ── name list side ── */
   .name-list {
-    flex: 0 0 220px;
+    flex: 0 0 380px;
     position: sticky;
     top: 1.5rem;
     max-height: calc(100vh - 3rem);
@@ -142,9 +142,10 @@
   .names-scroll::-webkit-scrollbar-thumb { background: #4a3520; border-radius: 3px; }
 
   .names-grid {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     border: 1px solid #3a2a18;
+    border-right: none;
     border-bottom: none;
   }
   .name-item {
